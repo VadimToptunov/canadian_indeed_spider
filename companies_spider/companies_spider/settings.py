@@ -11,7 +11,7 @@ BOT_NAME = 'companies_spider'
 
 SPIDER_MODULES = ['companies_spider.spiders']
 NEWSPIDER_MODULE = 'companies_spider.spiders'
-DEPTH_LIMIT = 1
+DEPTH_LIMIT = 0
 LOG_LEVEL = "DEBUG"
 LOG_FILE = "./companies_spider.log"
 
@@ -22,7 +22,7 @@ RETRY_HTTP_CODES = [500, 503, 504, 400, 403, 404, 408, 429]
 
 ROTATING_PROXY_LIST_PATH = 'list.txt'
 # Path that this library uses to store list of proxies
-NUMBER_OF_PROXIES_TO_FETCH = 5
+NUMBER_OF_PROXIES_TO_FETCH = 20
 # Controls how many proxies to use
 
 
