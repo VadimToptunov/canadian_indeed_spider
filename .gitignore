@@ -2,7 +2,7 @@
 .idea
 *.log
 *.csv
-*.txt
+list.txt
 *.json
 */__pycache__/*
 companies_spider/companies_spider/__pycache__/

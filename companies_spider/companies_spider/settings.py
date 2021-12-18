@@ -11,18 +11,20 @@ BOT_NAME = 'companies_spider'
 
 SPIDER_MODULES = ['companies_spider.spiders']
 NEWSPIDER_MODULE = 'companies_spider.spiders'
+FEED_FORMAT = "csv"
+FEED_URI = "company_super_extended_results.csv"
 DEPTH_LIMIT = 0
-LOG_LEVEL = "DEBUG"
+LOG_LEVEL = "INFO"
 LOG_FILE = "./companies_spider.log"
 
 # Retry many times since proxies often fail
-RETRY_TIMES = 100
+RETRY_TIMES = 500
 # Retry on most error codes since proxies fail for different reasons
 RETRY_HTTP_CODES = [500, 503, 504, 400, 403, 404, 408, 429]
 
 ROTATING_PROXY_LIST_PATH = 'list.txt'
 # Path that this library uses to store list of proxies
-NUMBER_OF_PROXIES_TO_FETCH = 20
+NUMBER_OF_PROXIES_TO_FETCH = 50
 # Controls how many proxies to use
 
 
@@ -88,12 +90,12 @@ ROBOTSTXT_OBEY = False
 # See https://docs.scrapy.org/en/latest/topics/autothrottle.html
 # AUTOTHROTTLE_ENABLED = True
 # The initial download delay
-AUTOTHROTTLE_START_DELAY = 1
+# AUTOTHROTTLE_START_DELAY = 1
 # The maximum download delay to be set in case of high latencies
-AUTOTHROTTLE_MAX_DELAY = 60
+# AUTOTHROTTLE_MAX_DELAY = 60
 # The average number of requests Scrapy should be sending in parallel to
 # each remote server
-AUTOTHROTTLE_TARGET_CONCURRENCY = 1.0
+# AUTOTHROTTLE_TARGET_CONCURRENCY = 1.0
 # Enable showing throttling stats for every response received:
 # AUTOTHROTTLE_DEBUG = False
 
