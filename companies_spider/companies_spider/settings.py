@@ -11,20 +11,20 @@ BOT_NAME = 'companies_spider'
 
 SPIDER_MODULES = ['companies_spider.spiders']
 NEWSPIDER_MODULE = 'companies_spider.spiders'
-FEED_FORMAT = "csv"
-FEED_URI = "company_super_extended_results.csv"
-DEPTH_LIMIT = 0
-LOG_LEVEL = "INFO"
+FEED_FORMAT = "json"
+FEED_URI = "company_super_extended_results_with_links.json"
+DEPTH_LIMIT = 5
+LOG_LEVEL = "DEBUG"
 LOG_FILE = "./companies_spider.log"
 
 # Retry many times since proxies often fail
-RETRY_TIMES = 500
+RETRY_TIMES = 100
 # Retry on most error codes since proxies fail for different reasons
 RETRY_HTTP_CODES = [500, 503, 504, 400, 403, 404, 408, 429]
 
 ROTATING_PROXY_LIST_PATH = 'list.txt'
 # Path that this library uses to store list of proxies
-NUMBER_OF_PROXIES_TO_FETCH = 50
+NUMBER_OF_PROXIES_TO_FETCH = 100
 # Controls how many proxies to use
 
 

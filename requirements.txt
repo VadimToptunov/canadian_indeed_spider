@@ -1,0 +1,4 @@
+Scrapy~=2.5.1
+itemadapter~=0.4.0
+requests~=2.26.0
+beautifulsoup4~=4.8.2

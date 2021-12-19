@@ -8,23 +8,37 @@ class IndeedCompaniesSpider(CrawlSpider):
     allowed_domains = ['ca.indeed.com']
     start_urls = ['https://ca.indeed.com/companies/']
     rules = (
-        Rule(LinkExtractor(allow=r"/cmp/*/", deny=(r'jobs', r'reviews', r'faq', r'salaries', r'survey', r'about',
-                                                   r'interviews', r'photos', r'questions')),
+        Rule(LinkExtractor(allow=r"/cmp/*/",
+                           deny=(r'jobs', r'reviews', r'faq', r'salaries', r'/survey/mc*',
+                                 r'interviews', r'photos', r'questions')),
              callback="parse", follow=True),)
 
     def parse(self, response):
-        page = response.url
+        href = response.css("a.css-iigu5k.emf9s7v0[aria-label='Why Join Us']::attr(href)").get()
+        url = response.urljoin(href)
+        yield scrapy.Request(url, callback=self.parse_with_social_data)
+
+    def parse_with_social_data(self, response):
+        page = response.url.replace("/about", "")
         stars = response.css("span.css-htn3vt.e1wnkr790::text").get()
         title = response.css("[itemprop='name']::text").get()
-        industry = response.css("[data-testid='companyInfo-industry'] .css-1w0iwyp::text").get()
-        jobs_num = response.css("[data-tn-element='jobs-tab'] .css-r228jg::text").get()
-        self.log('crawling'.format(page))
-        print(f"{page}, {stars}, {title}, {industry}, {jobs_num}")
-        company_data = {
+        industry = response.css("[data-testid='industry']::text").get()
+        jobs_number = response.css("[data-tn-element='jobs-tab'] .css-r228jg::text").get()
+        headquarters = response.css("[data-testid='headquarters']::text").get()
+        links = response.css("[data-tn-element='companyLink[]']::attr(href)").extract()
+        twitter = response.css("a.twitter-timeline::attr(href)").extract()
+        facebook = response.css("div.fb-page::attr(data-href)").extract()
+
+        company_data_with_social_media = {
             "url": page,
             "stars": stars,
             "title": title,
             "industry": industry,
-            "jobs_number": jobs_num
+            "jobs_number": jobs_number,
+            "headquarters": headquarters,
+            "links": links,
+            "twitter": twitter,
+            "facebook": facebook
         }
-        yield company_data
+        print(company_data_with_social_media)
+        yield company_data_with_social_media
