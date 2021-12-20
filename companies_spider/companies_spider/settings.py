@@ -13,7 +13,7 @@ SPIDER_MODULES = ['companies_spider.spiders']
 NEWSPIDER_MODULE = 'companies_spider.spiders'
 FEED_FORMAT = "json"
 FEED_URI = "company_super_extended_results_with_links.json"
-DEPTH_LIMIT = 5
+DEPTH_LIMIT = 0
 LOG_LEVEL = "DEBUG"
 LOG_FILE = "./companies_spider.log"
 

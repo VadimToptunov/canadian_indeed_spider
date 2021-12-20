@@ -16,7 +16,7 @@ class IndeedCompaniesSpider(CrawlSpider):
     def parse(self, response):
         href = response.css("a.css-iigu5k.emf9s7v0[aria-label='Why Join Us']::attr(href)").get()
         url = response.urljoin(href)
-        yield scrapy.Request(url, callback=self.parse_with_social_data)
+        yield response.follow(href, callback=self.parse_with_social_data)
 
     def parse_with_social_data(self, response):
         page = response.url.replace("/about", "")
