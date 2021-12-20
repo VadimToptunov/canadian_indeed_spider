@@ -10,7 +10,7 @@ class IndeedCompaniesSpider(CrawlSpider):
     rules = (
         Rule(LinkExtractor(allow=r"/cmp/*/",
                            deny=(r'jobs', r'reviews', r'faq', r'salaries', r'/survey/mc*',
-                                 r'interviews', r'photos', r'questions')),
+                                 r'interviews', r'photos', r'questions', r'write-review')),
              callback="parse", follow=True),)
 
     def parse(self, response):
