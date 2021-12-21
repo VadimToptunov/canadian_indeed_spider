@@ -6,13 +6,17 @@
 #     https://docs.scrapy.org/en/latest/topics/settings.html
 #     https://docs.scrapy.org/en/latest/topics/downloader-middleware.html
 #     https://docs.scrapy.org/en/latest/topics/spider-middleware.html
+import datetime
 
 BOT_NAME = 'companies_spider'
 
 SPIDER_MODULES = ['companies_spider.spiders']
 NEWSPIDER_MODULE = 'companies_spider.spiders'
-FEED_FORMAT = "json"
-FEED_URI = "company_super_extended_results_with_links.json"
+FEED_FORMAT = "csv"
+FEED_URI = f"company_super_extended_results_with_links-{datetime.datetime.now().date()}.csv"
+FEED_EXPORTERS = {
+    'csv': 'companies_spider.exporter.CsvCustomSeperator'
+}
 DEPTH_LIMIT = 0
 LOG_LEVEL = "DEBUG"
 LOG_FILE = "./companies_spider.log"
@@ -24,7 +28,7 @@ RETRY_HTTP_CODES = [500, 503, 504, 400, 403, 404, 408, 429]
 
 ROTATING_PROXY_LIST_PATH = 'list.txt'
 # Path that this library uses to store list of proxies
-NUMBER_OF_PROXIES_TO_FETCH = 100
+NUMBER_OF_PROXIES_TO_FETCH = 300
 # Controls how many proxies to use
 
 

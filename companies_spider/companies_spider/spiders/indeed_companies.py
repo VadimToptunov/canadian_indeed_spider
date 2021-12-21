@@ -15,16 +15,15 @@ class IndeedCompaniesSpider(CrawlSpider):
 
     def parse(self, response):
         href = response.css("a.css-iigu5k.emf9s7v0[aria-label='Why Join Us']::attr(href)").get()
-        url = response.urljoin(href)
         yield response.follow(href, callback=self.parse_with_social_data)
 
     def parse_with_social_data(self, response):
         page = response.url.replace("/about", "")
         stars = response.css("span.css-htn3vt.e1wnkr790::text").get()
         title = response.css("[itemprop='name']::text").get()
-        industry = response.css("[data-testid='industry']::text").get()
+        industry = response.css("[data-tn-element='industryLink']::text").get()
         jobs_number = response.css("[data-tn-element='jobs-tab'] .css-r228jg::text").get()
-        headquarters = response.css("[data-testid='headquarters']::text").get()
+        headquarters = response.css("[data-testid='headquarters']::text").get().replace("\r", "").replace("\n", " ")
         links = response.css("[data-tn-element='companyLink[]']::attr(href)").extract()
         twitter = response.css("a.twitter-timeline::attr(href)").extract()
         facebook = response.css("div.fb-page::attr(data-href)").extract()
