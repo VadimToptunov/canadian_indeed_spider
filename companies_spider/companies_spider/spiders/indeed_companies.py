@@ -25,7 +25,7 @@ class IndeedCompaniesSpider(CrawlSpider):
         jobs_number = response.css("[data-tn-element='jobs-tab'] .css-r228jg::text").get()
         headquarters = response.css("[data-testid='headquarters']::text").get()
         if headquarters is not None:
-            headquarters.replace("\r", "").replace("\n", " ")
+            headquarters = ' '.join(headquarters.splitlines())
         links = response.css("[data-tn-element='companyLink[]']::attr(href)").extract()
         twitter = response.css("a.twitter-timeline::attr(href)").extract()
         facebook = response.css("div.fb-page::attr(data-href)").extract()

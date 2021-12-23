@@ -1,4 +1,4 @@
-# first_spider
+# indeed_spider
 
 `cd ./companies_spider && scrapy crawl indeed_companies`
 
