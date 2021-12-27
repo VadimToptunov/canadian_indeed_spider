@@ -28,7 +28,7 @@ RETRY_HTTP_CODES = [500, 503, 504, 400, 403, 404, 408, 429]
 
 ROTATING_PROXY_LIST_PATH = 'list.txt'
 # Path that this library uses to store list of proxies
-NUMBER_OF_PROXIES_TO_FETCH = 300
+NUMBER_OF_PROXIES_TO_FETCH = 50
 # Controls how many proxies to use
 
 
