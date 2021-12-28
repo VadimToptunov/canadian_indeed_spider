@@ -13,7 +13,7 @@ BOT_NAME = 'companies_spider'
 SPIDER_MODULES = ['companies_spider.spiders']
 NEWSPIDER_MODULE = 'companies_spider.spiders'
 FEED_FORMAT = "csv"
-FEED_URI = f"company_super_extended_results_with_links-{datetime.datetime.now().date()}.csv"
+FEED_URI = f"US_company_super_extended_results_with_links-{datetime.datetime.now().date()}.csv"
 FEED_EXPORTERS = {
     'csv': 'companies_spider.exporter.CsvCustomSeperator'
 }

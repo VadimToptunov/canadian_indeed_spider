@@ -9,7 +9,8 @@ class IndeedCompaniesSpider(CrawlSpider):
     rules = (
         Rule(LinkExtractor(allow=r"/cmp/*/",
                            deny=(r'jobs', r'reviews', r'faq', r'salaries', r'/survey/mc*',
-                                 r'interviews', r'photos', r'questions', r'write-review')),
+                                 r'interviews', r'photos', r'questions', r'write-review', r"topics",
+                                 r"articles", r"benefits", r"locations")),
              callback="parse", follow=True),)
 
     def parse(self, response):
@@ -19,6 +20,8 @@ class IndeedCompaniesSpider(CrawlSpider):
     def parse_with_social_data(self, response):
         page = response.url.replace("/about", "")
         stars = response.css("span.css-htn3vt.e1wnkr790::text").get()
+        if stars is not None:
+            stars = float(stars)
         title = response.css("[itemprop='name']::text").get()
         industry = response.css("[data-tn-element='industryLink']::text").get()
         jobs_number = response.css("[data-tn-element='jobs-tab'] .css-r228jg::text").get()
