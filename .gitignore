@@ -1,7 +1,7 @@
 ./venv
 .idea
 *.log
-*.csv
+*.xls;xlsx;csv
 list.txt
 *.json
 */__pycache__/*
@@ -9,3 +9,4 @@ companies_spider/companies_spider/__pycache__/
 companies_spider/companies_spider/spiders/__pycache__/
 companies_spider/get_free_proxies.py
 .DS_Store
+pd.py

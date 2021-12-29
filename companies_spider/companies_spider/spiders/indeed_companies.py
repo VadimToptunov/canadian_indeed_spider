@@ -25,6 +25,14 @@ class IndeedCompaniesSpider(CrawlSpider):
         title = response.css("[itemprop='name']::text").get()
         industry = response.css("[data-tn-element='industryLink']::text").get()
         jobs_number = response.css("[data-tn-element='jobs-tab'] .css-r228jg::text").get()
+        if jobs_number is not None:
+            if "K" in jobs_number:
+                if "." in jobs_number:
+                    jobs_number = int(jobs_number.replace(".", "").replace("K", "00"))
+                else:
+                    jobs_number = int(jobs_number.replace("K", "000"))
+            else:
+                jobs_number = int(jobs_number)
         headquarters = response.css("[data-testid='headquarters']::text").get()
         if headquarters is not None:
             headquarters = ' '.join(headquarters.splitlines())
