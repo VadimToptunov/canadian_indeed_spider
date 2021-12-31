@@ -21,7 +21,7 @@ class IndeedCompaniesSpider(CrawlSpider):
         page = response.url.replace("/about", "")
         stars = response.css("span.css-htn3vt.e1wnkr790::text").get()
         if stars is not None:
-            stars = float(stars)
+            stars = f"{stars.replace('.', ',')}0"
         title = response.css("[itemprop='name']::text").get()
         industry = response.css("[data-tn-element='industryLink']::text").get()
         jobs_number = response.css("[data-tn-element='jobs-tab'] .css-r228jg::text").get()
